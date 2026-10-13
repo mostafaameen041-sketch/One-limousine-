@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One Limousine</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b7a63">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f2f5f7;--card:#fff;--ink:#14232d;--mut:#6b7c88;--pri:#0b7a63;--pri2:#e3f3ef;--red:#c2410c;--line:#e1e8ec;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e171d;--card:#16232b;--ink:#e8f0f4;--mut:#8da0ac;--pri:#2fc2a0;--pri2:#12332d;--red:#fb923c;--line:#243540}}
+:root[data-theme="dark"]{--bg:#0e171d;--card:#16232b;--ink:#e8f0f4;--mut:#8da0ac;--pri:#2fc2a0;--pri2:#12332d;--red:#fb923c;--line:#243540}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Tajawal',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;font-size:16px;padding-bottom:84px}
+.wrap{max-width:560px;margin:0 auto;padding:14px}
+.top{display:flex;gap:8px;align-items:center;margin-bottom:12px}
+.top h1{font-size:22px;font-weight:800;margin:0;flex:1}
+input,select,button{font:inherit;color:inherit}
+input{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);min-width:0}
+input:focus,button:focus-visible{outline:2px solid var(--pri);outline-offset:1px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px}
+.hero{background:var(--pri);color:#fff;border-radius:22px;padding:18px;margin-bottom:12px}
+.dt{font-weight:700;color:var(--pri);background:var(--pri2);padding:8px 12px;border-radius:12px;font-size:13px;text-align:center}
+select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);font:inherit}
+.lb{font-size:13px;color:var(--mut);display:block}
+.lb input{margin-top:4px;color:var(--ink)}
+.hero small{opacity:.85}
+.hero .big{font-size:46px;font-weight:800;line-height:1.1;margin:4px 0 12px}
+.hero .row{display:flex;gap:10px}
+.hero .row div{flex:1;background:rgba(255,255,255,.16);border-radius:12px;padding:8px 10px}
+.hero .row b{display:block;font-size:19px}
+h2{font-size:17px;margin:0 0 10px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.g .full{grid-column:1/-1}
+.btn{border:0;border-radius:12px;padding:12px 16px;font-weight:700;background:var(--pri);color:#fff;cursor:pointer;width:100%;margin-top:8px}
+.btn.alt{background:var(--pri2);color:var(--pri)}
+.btn.sm{width:auto;margin:0;padding:8px 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:99px;padding:6px 12px;cursor:pointer}
+.chip:active,.chip.on{background:var(--pri2);border-color:var(--pri);color:var(--pri)}
+.item{display:flex;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.item .m{flex:1;min-width:0}
+.item .m small{color:var(--mut);display:block}
+.amt{font-weight:800;white-space:nowrap}
+.amt.e{color:var(--red)}
+.x{border:0;background:none;color:var(--mut);font-size:22px;cursor:pointer;padding:0 6px}
+.empty{color:var(--mut);text-align:center;padding:14px 0}
+nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:var(--card);border-top:1px solid var(--line);padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;border:0;background:none;padding:10px;border-radius:12px;font-weight:700;color:var(--mut);cursor:pointer}
+nav button.on{background:var(--pri2);color:var(--pri)}
+.inv{background:#fff;color:#111;border-radius:12px;padding:16px;border:1px solid var(--line)}
+.inv h3{margin:0;text-align:center;font-size:20px}
+.inv .meta{display:flex;justify-content:space-between;color:#555;margin:6px 0 12px;font-size:14px}
+.sc{overflow-x:auto}
+.inv table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px;min-width:420px}
+.inv th,.inv td{border:1px solid #d5dde2;padding:6px;text-align:right}
+.inv th{background:#eef3f5}
+.tot{border:2px solid #111;border-radius:10px;padding:8px 12px}
+.tot div{display:flex;justify-content:space-between;padding:3px 0}
+.tot .r{font-size:19px;font-weight:800;border-top:1px solid #111;margin-top:4px;padding-top:6px}
+.mon{display:flex;justify-content:space-between;background:var(--pri2);color:var(--pri);border-radius:12px;padding:10px 12px;margin-bottom:8px;font-weight:700}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#14232d;color:#fff;padding:10px 16px;border-radius:99px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+textarea{width:100%;min-height:70px;border:1.5px solid var(--line);border-radius:12px;padding:10px;background:var(--card);font:inherit;color:inherit}
+@media print{body{background:#fff;padding:0}nav,.top,.noprint{display:none!important}.wrap{padding:0}.inv{border:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top noprint">
+    <h1 dir="ltr" style="text-align:right">One Limousine</h1>
+    <div id="dateTxt" class="dt"></div>
+  </div>
+
+  <div id="oldBar" class="card noprint" style="display:none;align-items:center;justify-content:space-between;gap:8px"><span>بتعدّل يوم قديم</span><button class="btn sm" id="backToday">ارجع لليوم</button></div>
+  <section id="s-today">
+    <div class="hero">
+      <small>المتبقي في العربية</small>
+      <div class="big"><span id="hRem">0</span> ج</div>
+      <div class="row"><div><small>التحصيل</small><b id="hCol">0</b></div><div><small>المصروفات</small><b id="hExp">0</b></div></div>
+    </div>
+
+    <div class="card">
+      <h2>أضف رحلة</h2>
+      <div class="g">
+        <input id="tFrom" placeholder="من" list="places">
+        <input id="tTo" placeholder="إلى" list="places">
+        <input id="tFrom2" placeholder="نقطة تحرك إضافية (اختياري)" list="places">
+        <input id="tTo2" placeholder="نقطة وصول إضافية (اختياري)" list="places">
+        <input id="tOut" type="time" aria-label="وقت التحرك">
+        <input id="tIn" type="time" aria-label="وقت الوصول">
+        <input id="tCo" placeholder="الشركة" list="cos">
+        <input id="tPr" type="number" inputmode="numeric" placeholder="المبلغ">
+      </div>
+      <button class="btn" id="addT">حفظ الرحلة</button>
+      <datalist id="places"></datalist><datalist id="cos"></datalist>
+    </div>
+    <div class="card"><h2>الرحلات</h2><div id="tList"></div></div>
+
+    <div class="card">
+      <h2>أضف يومية</h2>
+      <div class="g">
+        <label class="lb">من الساعة<input id="dFrom" type="time"></label>
+        <label class="lb">إلى الساعة<input id="dTo" type="time"></label>
+        <select id="dCity" aria-label="المدينة"><option value="">المدينة (اختياري)</option><option>القاهرة</option><option>إسكندرية</option></select>
+        <input id="dCo" placeholder="الشركة" list="cos">
+        <input id="dPr" class="full" type="number" inputmode="numeric" placeholder="المبلغ">
+      </div>
+      <button class="btn" id="addD">حفظ اليومية</button>
+    </div>
+    <div class="card"><h2>اليوميات</h2><div id="dList"></div></div>
+
+    <div class="card">
+      <h2>أضف مصروف</h2>
+      <div class="chips" id="chips"></div>
+      <div class="g">
+        <input id="eCat" class="full" placeholder="اكتب نوع المصروف" style="display:none">
+        <input id="eAmt" class="full" type="number" inputmode="numeric" placeholder="المبلغ">
+      </div>
+      <button class="btn" id="addE">حفظ المصروف</button>
+    </div>
+    <div class="card"><h2>المصروفات</h2><div id="eList"></div></div>
+  </section>
+
+  <section id="s-inv" hidden>
+    <div class="card noprint"><div class="g"><input id="car" placeholder="اسم / رقم العربية"><input id="driver" placeholder="اسم السائق"></div></div>
+    <div class="inv" id="inv"></div>
+    <div class="g noprint" style="margin-top:8px">
+      <button class="btn" id="share">مشاركة الفاتورة</button>
+      <button class="btn alt" id="print">طباعة / PDF</button>
+    </div>
+  </section>
+
+  <section id="s-hist" hidden>
+    <div id="months"></div>
+    <div class="card"><h2>الأيام السابقة</h2><div id="days"></div></div>
+    <div class="card">
+      <h2>نسخة احتياطية</h2>
+      <div class="g"><button class="btn alt" id="bk">نسخ البيانات</button><button class="btn alt" id="rs">استرجاع</button></div>
+      <textarea id="bkTxt" placeholder="للاسترجاع: الصق البيانات هنا ثم اضغط استرجاع" style="margin-top:8px"></textarea>
+    </div>
+  </section>
+</div>
+
+<nav>
+  <button data-t="today" class="on">اليوم</button>
+  <button data-t="inv">الفاتورة</button>
+  <button data-t="hist">السجل</button>
+</nav>
+<div class="toast" id="toast"></div>
+
+<script>
+const K='takfeel_v1';
+let S={days:{},car:'',driver:'',cos:[],places:[]};
+try{const r=localStorage.getItem(K);if(r)S=Object.assign(S,JSON.parse(r))}catch(x){}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(x){}};
+const $=id=>document.getElementById(id);
+const n=v=>Number(v)||0;
+const money=v=>n(v).toLocaleString('en-US');
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const t12=t=>{if(!t)return'-';let[h,m]=t.split(':').map(Number);const s=h>=12?'م':'ص';h=h%12||12;return h+':'+String(m).padStart(2,'0')+' '+s};
+const p2=v=>String(v).padStart(2,'0');
+const todayStr=()=>{const d=new Date();return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate())};
+let cur=todayStr(),old=false;
+const AR=s=>{const[y,m,d]=s.split('-').map(Number);try{return new Date(y,m-1,d).toLocaleDateString('ar-EG-u-nu-latn',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}catch(x){return s}};
+const rt=t=>esc(t.from)+(t.from2?' + '+esc(t.from2):'')+' ← '+esc(t.to)+(t.to2?' + '+esc(t.to2):'');
+function tick(){const t=todayStr();if(!old&&cur!==t){cur=t;render()}}
+setInterval(tick,30000);document.addEventListener('visibilitychange',tick);
+const EXP=['بنزين','كارتة'];let selE='';
+const getDay=d=>{const x=S.days[d]||{trips:[],exp:[]};x.dail=x.dail||[];return x};
+const ensure=d=>{const x=S.days[d]||(S.days[d]={trips:[],exp:[]});x.dail=x.dail||[];return x};
+const tot=d=>{const x=getDay(d);const c=x.trips.reduce((a,t)=>a+n(t.price),0)+x.dail.reduce((a,t)=>a+n(t.price),0);const e=x.exp.reduce((a,t)=>a+n(t.amt),0);return{c,e,r:c-e}};
+
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)}
+
+function render(){
+  $('dateTxt').textContent=AR(cur);$('oldBar').style.display=old?'flex':'none';
+  const x=getDay(cur),T=tot(cur);
+  $('hRem').textContent=money(T.r);$('hCol').textContent=money(T.c);$('hExp').textContent=money(T.e);
+  $('tList').innerHTML=x.trips.length?x.trips.map((t,i)=>`<div class="item"><div class="m"><b>${rt(t)}</b><small>${t12(t.out)} - ${t12(t.in)}${t.co?' • '+esc(t.co):''}</small></div><span class="amt">${money(t.price)}</span><button class="x" data-dt="${i}" aria-label="حذف">×</button></div>`).join(''):'<div class="empty">مفيش رحلات اليوم. سجّل أول رحلة من فوق.</div>';
+  $('eList').innerHTML=x.exp.length?x.exp.map((e,i)=>`<div class="item"><div class="m"><b>${esc(e.cat)}</b></div><span class="amt e">${money(e.amt)}</span><button class="x" data-de="${i}" aria-label="حذف">×</button></div>`).join(''):'<div class="empty">مفيش مصروفات اليوم.</div>';
+  $('dList').innerHTML=x.dail.length?x.dail.map((d,i)=>`<div class="item"><div class="m"><b>يومية ${t12(d.from)} - ${t12(d.to)}</b><small>${d.city?esc(d.city):''}${d.co?(d.city?' • ':'')+esc(d.co):''}</small></div><span class="amt">${money(d.price)}</span><button class="x" data-dy="${i}" aria-label="حذف">×</button></div>`).join(''):'<div class="empty">مفيش يوميات اليوم.</div>';
+  $('cos').innerHTML=S.cos.map(c=>`<option value="${esc(c)}">`).join('');
+  $('places').innerHTML=S.places.map(c=>`<option value="${esc(c)}">`).join('');
+  $('car').value=S.car;$('driver').value=S.driver;
+  renderInv();renderHist();
+}
+
+function renderInv(){
+  const x=getDay(cur),T=tot(cur);
+  const rows=x.trips.map(t=>`<tr><td>${esc(t.from)}${t.from2?' + '+esc(t.from2):''}</td><td>${esc(t.to)}${t.to2?' + '+esc(t.to2):''}</td><td>${t12(t.out)}</td><td>${t12(t.in)}</td><td>${esc(t.co)}</td><td>${money(t.price)}</td></tr>`).join('')||'<tr><td colspan="6">لا توجد رحلات</td></tr>';
+  const dr=x.dail.map(d=>`<tr><td>${t12(d.from)}</td><td>${t12(d.to)}</td><td>${esc(d.city)}</td><td>${esc(d.co)}</td><td>${money(d.price)}</td></tr>`).join('');
+  const er=x.exp.map(e=>`<tr><td>${esc(e.cat)}</td><td>${money(e.amt)}</td></tr>`).join('')||'<tr><td colspan="2">لا توجد مصروفات</td></tr>';
+  $('inv').innerHTML=`<h3 dir="ltr">One Limousine</h3><div class="meta"><span>التاريخ: ${cur.split('-').reverse().join('/')}</span><span>${esc(S.car)}${S.driver?' • '+esc(S.driver):''}</span></div>
+  <div class="sc"><table><tr><th>من</th><th>إلى</th><th>تحرك</th><th>وصول</th><th>الشركة</th><th>المبلغ</th></tr>${rows}</table></div>
+  ${dr?`<div class="sc"><table><tr><th>يومية من</th><th>إلى</th><th>المدينة</th><th>الشركة</th><th>المبلغ</th></tr>${dr}</table></div>`:''}
+  <table style="min-width:0"><tr><th>المصروف</th><th>المبلغ</th></tr>${er}</table>
+  <div class="tot"><div><span>إجمالي التحصيل</span><b>${money(T.c)}</b></div><div><span>إجمالي المصروفات</span><b>${money(T.e)}</b></div><div class="r"><span>المتبقي في العربية</span><b>${money(T.r)} ج</b></div></div>`;
+}
+
+function renderHist(){
+  const ds=Object.keys(S.days).sort().reverse();
+  const m={};ds.forEach(d=>{const k=d.slice(0,7),T=tot(d);m[k]=m[k]||{c:0,e:0,r:0,n:0};m[k].c+=T.c;m[k].e+=T.e;m[k].r+=T.r;m[k].n++});
+  $('months').innerHTML=Object.keys(m).sort().reverse().map(k=>`<div class="mon"><span>${k.split('-').reverse().join('/')} (${m[k].n} يوم)</span><span>تحصيل ${money(m[k].c)} • صافي ${money(m[k].r)}</span></div>`).join('');
+  $('days').innerHTML=ds.length?ds.map(d=>{const T=tot(d);return`<div class="item"><div class="m" data-od="${d}" style="cursor:pointer"><b>${d.split('-').reverse().join('/')}</b><small>${getDay(d).trips.length} رحلة • ${getDay(d).dail.length} يومية • مصروفات ${money(T.e)}</small></div><span class="amt">${money(T.r)}</span><button class="x" data-dd="${d}" aria-label="حذف اليوم">×</button></div>`}).join(''):'<div class="empty">السجل فاضي. أي يوم تسجله هيتحفظ هنا لوحده.</div>';
+}
+
+function show(t){
+  ['today','inv','hist'].forEach(k=>{$('s-'+k).hidden=k!==t});
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+  window.scrollTo(0,0);
+}
+document.querySelector('nav').onclick=e=>{const b=e.target.closest('button');if(b)show(b.dataset.t)};
+$('backToday').onclick=()=>{old=false;cur=todayStr();render()};
+
+function chips(){$('chips').innerHTML=EXP.map(c=>`<button class="chip${selE===c?' on':''}" data-c="${c}">${c}</button>`).join('')+`<button class="chip${selE==='__o'?' on':''}" data-c="__o">+ إضافة</button>`;$('eCat').style.display=selE==='__o'?'block':'none'}
+$('chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;selE=b.dataset.c;chips();if(selE==='__o')$('eCat').focus();else $('eAmt').focus()};
+chips();
+
+$('addT').onclick=()=>{
+  const t={from:$('tFrom').value.trim(),to:$('tTo').value.trim(),from2:$('tFrom2').value.trim(),to2:$('tTo2').value.trim(),out:$('tOut').value,in:$('tIn').value,co:$('tCo').value.trim(),price:n($('tPr').value)};
+  if(!t.from&&!t.to){toast('اكتب من فين لفين');return}
+  if(!t.price){toast('اكتب المبلغ');return}
+  ensure(cur).trips.push(t);
+  [t.co].forEach(c=>{if(c&&!S.cos.includes(c))S.cos.push(c)});
+  [t.from,t.to,t.from2,t.to2].forEach(c=>{if(c&&!S.places.includes(c))S.places.push(c)});
+  ['tFrom','tTo','tFrom2','tTo2','tOut','tIn','tPr'].forEach(i=>$(i).value='');
+  save();render();toast('تم حفظ الرحلة');
+};
+$('addD').onclick=()=>{
+  const d={from:$('dFrom').value,to:$('dTo').value,city:$('dCity').value,co:$('dCo').value.trim(),price:n($('dPr').value)};
+  if(!d.from||!d.to){toast('اكتب من الساعة كام لحد كام');return}
+  if(!d.price){toast('اكتب المبلغ');return}
+  ensure(cur).dail.push(d);
+  if(d.co&&!S.cos.includes(d.co))S.cos.push(d.co);
+  ['dFrom','dTo','dPr'].forEach(i=>$(i).value='');$('dCity').value='';
+  save();render();toast('تم حفظ اليومية');
+};
+$('addE').onclick=()=>{
+  const cat=selE==='__o'?$('eCat').value.trim():selE,amt=n($('eAmt').value);
+  if(!cat||!amt){toast('اختار النوع واكتب المبلغ');return}
+  ensure(cur).exp.push({cat,amt});
+  $('eCat').value='';$('eAmt').value='';selE='';chips();
+  save();render();toast('تم حفظ المصروف');
+};
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-dt],[data-de],[data-dd],[data-od],[data-dy]');if(!a)return;
+  if(a.dataset.dt!=null){ensure(cur).trips.splice(+a.dataset.dt,1);save();render()}
+  else if(a.dataset.dy!=null){ensure(cur).dail.splice(+a.dataset.dy,1);save();render()}
+  else if(a.dataset.de!=null){ensure(cur).exp.splice(+a.dataset.de,1);save();render()}
+  else if(a.dataset.dd){if(confirm('تحذف اليوم ده؟')){delete S.days[a.dataset.dd];save();render()}}
+  else if(a.dataset.od){cur=a.dataset.od;old=cur!==todayStr();render();show('today')}
+});
+$('car').oninput=e=>{S.car=e.target.value;save();renderInv()};
+$('driver').oninput=e=>{S.driver=e.target.value;save();renderInv()};
+
+function copy(txt){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>toast('تم النسخ')).catch(()=>toast('مقدرتش أنسخ'));return}
+  const t=document.createElement('textarea');t.value=txt;document.body.appendChild(t);t.select();try{document.execCommand('copy');toast('تم النسخ')}catch(x){toast('مقدرتش أنسخ')}t.remove();
+}
+$('share').onclick=()=>{
+  const x=getDay(cur),T=tot(cur);
+  let s=`One Limousine - ${cur.split('-').reverse().join('/')}\n${S.car||''} ${S.driver||''}\n\nالرحلات:\n`;
+  s+=x.trips.map(t=>`- ${t.from}${t.from2?' + '+t.from2:''} ← ${t.to}${t.to2?' + '+t.to2:''} (${t12(t.out)} - ${t12(t.in)}) ${t.co||''}: ${money(t.price)}`).join('\n')||'- لا يوجد';
+  if(x.dail.length)s+='\n\nاليوميات:\n'+x.dail.map(d=>`- ${t12(d.from)} - ${t12(d.to)} ${d.city||''} ${d.co||''}: ${money(d.price)}`).join('\n');
+  s+='\n\nالمصروفات:\n'+(x.exp.map(e=>`- ${e.cat}: ${money(e.amt)}`).join('\n')||'- لا يوجد');
+  s+=`\n\nإجمالي التحصيل: ${money(T.c)}\nإجمالي المصروفات: ${money(T.e)}\nالمتبقي في العربية: ${money(T.r)} ج`;
+  if(navigator.share){navigator.share({text:s}).catch(()=>copy(s))}else copy(s);
+};
+$('print').onclick=()=>{try{window.print()}catch(x){toast('الطباعة مش متاحة هنا')}};
+$('bk').onclick=()=>copy(JSON.stringify(S));
+$('rs').onclick=()=>{
+  try{const d=JSON.parse($('bkTxt').value);if(!d.days)throw 0;S=Object.assign(S,d);save();render();$('bkTxt').value='';toast('تم الاسترجاع')}
+  catch(x){toast('البيانات مش صحيحة')}
+};
+render();
+if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
+</script>
+</body>
+</html>
